@@ -43,22 +43,19 @@ const LiveTracker = () => {
     const newMarker = L.marker([0, 0]).addTo(newMap);
     setMarker(newMarker);
 
-    setMap(newMap); // Save the map instance in state
+    setMap(newMap); 
 
     return () => {
-      // Clean up the map instance when the component is unmounted
       newMap.remove();
     };
-  }, []); // Empty dependency array ensures this effect runs only once on mount
-
+  }, []); 
+  
   useEffect(() => {
     // Update the marker position when the location changes
     if (map && marker) {
       if (!marker._latlng.lat) {
-        // If marker position is not yet initialized, setLatLng and addTo the map
         marker.setLatLng([location.latitude, location.longitude]).addTo(map);
       } else {
-        // If marker position is already initialized, just update the position
         marker.setLatLng([location.latitude, location.longitude]);
       }
 
